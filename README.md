@@ -1,2 +1,2 @@
-# 8803-SMR
-Code related to RL-based resource allocation research project as deliverable for 8803-SMR
+# DeepSlicing
+Source Codes for: DeepSlicing: Deep Reinforcement Learning Assisted Resource Allocation for Network Slicing
