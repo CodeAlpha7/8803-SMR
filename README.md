@@ -1,2 +1,2 @@
-# DeepSlicing
-Source Codes for: DeepSlicing: Deep Reinforcement Learning Assisted Resource Allocation for Network Slicing
+# RARE
+Source Codes for: Resource Allocation for network slicing using Reinforcement Learning
