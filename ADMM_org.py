@@ -273,6 +273,6 @@ if __name__ == "__main__":
 
             utility_static[ite], utility_ddpg[ite], utility_opt[ite] = main_admm_algorithm(SliceNum, UENum, RESNum, alpha_, weight_, INDEX)
 
-        scipy.io.savemat('/root/Desktop/DRL_Project/result'+str(SliceNum)+'.mat', mdict={'utility_static': utility_static,
+        scipy.io.savemat('results/result'+str(SliceNum)+'.mat', mdict={'utility_static': utility_static,
                                                                     'utility_ddpg': utility_ddpg,
                                                                     'utility_opt': utility_opt,})
