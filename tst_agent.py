@@ -1,9 +1,11 @@
-import numpy as np
-import time
-import pickle
-from functions import *
 import sys
+import time
 import random
+import pickle
+
+import numpy as np
+
+from functions import *
 
 
 if __name__ == "__main__":

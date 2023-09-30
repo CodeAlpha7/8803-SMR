@@ -1,8 +1,10 @@
-from env_mra import ResourceEnv
 import numpy as np
 import matplotlib.pyplot as matplt
-from utils import generate_alpha_fairness_function
+
+from env_mra import ResourceEnv
 from ddpg_alg_spinup import ReplayBuffer
+from utils import generate_alpha_fairness_function
+
 
 UENum = 5
 RESNum = 3

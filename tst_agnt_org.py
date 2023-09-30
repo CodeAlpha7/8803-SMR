@@ -1,8 +1,10 @@
-import numpy as np
+import sys
 import time
 import pickle
+
+import numpy as np
+
 from functions import *
-import sys
 
 
 if __name__ == "__main__":

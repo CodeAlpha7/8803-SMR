@@ -1,13 +1,14 @@
+import pickle
+import time
+
+import gym
 import numpy as np
 import tensorflow as tf
-import gym
-import time
+import matplotlib.pyplot as matplt
+
 import t3_ddpg_core_spinup as core
 from t3_ddpg_core_spinup import get_vars
 from spinup.utils.logx import EpochLogger
-import matplotlib.pyplot as matplt
-import pickle
-
 
 
 class ReplayBuffer:

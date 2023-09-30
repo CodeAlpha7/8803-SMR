@@ -1,12 +1,12 @@
-import time
-import joblib
 import os
+import time
 import os.path as osp
-import tensorflow as tf
-from spinup.utils.logx import EpochLogger
-from spinup.utils.logx import restore_tf_graph
+
+import joblib
 import numpy as np
+import tensorflow as tf
 import matplotlib.pyplot as matplt
+from spinup.utils.logx import EpochLogger, restore_tf_graph
 
 
 def load_policy(fpath, itr='last', deterministic=False):

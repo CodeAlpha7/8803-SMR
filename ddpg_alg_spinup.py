@@ -1,13 +1,15 @@
+import pickle
+import time
+
+import gym
 import numpy as np
 import tensorflow as tf
-import gym
-import time
-import ddpg_core_spinup as core
-from ddpg_core_spinup import get_vars
-from spinup.utils.logx import EpochLogger
 import matplotlib.pyplot as matplt
-import pickle
-from ddpg_noise import OrnsteinUhlenbeckActionNoise
+
+from ddpg_core_spinup import core
+from ddpg_core_spinup import get_vars
+from ddpg_core_spinup import EpochLogger
+from ddpg_core_spinup import OrnsteinUhlenbeckActionNoise
 
 class ReplayBuffer:
     """
