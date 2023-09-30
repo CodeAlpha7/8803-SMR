@@ -2,8 +2,5 @@
 *__pycache__
 *.pyc
 
-# Environments
-.env
-
 # MacOS
 *.DS_Store
