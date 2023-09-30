@@ -40,14 +40,14 @@ Some dependencies require additional setup:
 # Refactoring TODOs
 
 ## Must haves
-- [ ] Re-organize codebase structure
-- [✓] Change absolute paths to relative paths
-- [✓] Refactor import statements (built-in, third-party, local)
-- [✓] Create environment
-- [✓] List dependencies in `requirements.txt`
-- [✓] Add usage and other instructions on README.md
-- [ ] Run profiler
-- [ ] Fix eventual bottlenecks
+[ ] Re-organize codebase structure
+[x] Change absolute paths to relative paths
+[x] Refactor import statements (built-in, third-party, local)
+[x] Create environment
+[x] List dependencies in `requirements.txt`
+[x] Add usage and other instructions on README.md
+[ ] Run profiler
+[ ] Fix eventual bottlenecks
 
 ## Nice to haves
-- [ ] Add some feedback when scrips run so user knows what is happening
+[ ] Add some feedback when scrips run so user knows what is happening
