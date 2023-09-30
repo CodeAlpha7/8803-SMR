@@ -45,12 +45,12 @@ weight_slice = np.random.uniform(0.1, 0.9, SliceNum)
 weight = np.array([weight_slice[i] * weight_ue[i] for i in range(SliceNum)])
 
 print(alpha)
-with open("/Users/apoorvgarg/PycharmProjects/BTP-Slice-RL/saved_alpha.pickle", "wb") as fileop:
+with open("pickled_data/saved_alpha.pickle", "wb") as fileop:
     print("saved alpha")
     pickle.dump(alpha, fileop)
 
 print(weight)
-with open("/Users/apoorvgarg/PycharmProjects/BTP-Slice-RL/saved_weight.pickle", "wb") as fileop:
+with open("pickled_data/saved_weight.pickle", "wb") as fileop:
     print("saved weight")
     pickle.dump(weight, fileop)
 
