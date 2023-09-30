@@ -91,10 +91,10 @@ if __name__ == "__main__":
     matplt.show()
 
 
-    with open("saved_test.pickle", "wb") as fileop:
+    with open("pickled_data/saved_test.pickle", "wb") as fileop:
         pickle.dump([x_ddpg, x_opt], fileop)
 
-    scipy.io.savemat('/root/Desktop/DRL_Project/test_agent.mat',
+    scipy.io.savemat('results/test_agent.mat',
                     mdict={'x_ddpg': x_ddpg,
                     'x_opt': x_opt,
                     'x_static': x_static,

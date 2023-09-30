@@ -63,8 +63,8 @@ with open("pickled_data/saved_weight.pickle", "wb") as fileop:
 #SliceNum = 3
 # load from training saved parameters
 
-#with open("saved_alpha.pickle", "rb") as fileop:
+#with open("pickled_data/saved_alpha.pickle", "rb") as fileop:
 #    alpha = pickle.load(fileop)
 #
-#with open("saved_weight.pickle", "rb") as fileop:
+#with open("pickled_data/saved_weight.pickle", "rb") as fileop:
 #    weight = pickle.load(fileop)

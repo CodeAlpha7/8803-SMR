@@ -275,7 +275,7 @@ def main_admm_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX):
     print("APPY")
     print([utility_static, utility_ddpg, utility_opt])
 
-    # scipy.io.savemat('/root/Desktop/DRL_Project/ADMM_simulation' + str(simulated_optimization) + '.mat', mdict={'sum_x': sum_x,
+    # scipy.io.savemat('results/ADMM_simulation' + str(simulated_optimization) + '.mat', mdict={'sum_x': sum_x,
     #                                                'sum_real_utility': sum_real_utility,
     #                                                'sum_gap': sum_gap,
     #                                                'sum_utility': sum_utility,
@@ -321,7 +321,7 @@ if __name__ == "__main__":
             utility_static[ite], utility_ddpg[ite], utility_opt[ite] = main_admm_algorithm(SliceNum, UENum, RESNum,
                                                                                            alpha_, weight_, INDEX)
 
-        scipy.io.savemat('/Users/apoorvgarg/PycharmProjects/BTP-Slice-RL/result/Apooorv_tests' + str(SliceNum) + '.mat',
+        scipy.io.savemat('results/Apooorv_tests' + str(SliceNum) + '.mat',
                          mdict={'utility_static': utility_static,
                                 'utility_ddpg': utility_ddpg,
                                 'utility_opt': utility_opt, })

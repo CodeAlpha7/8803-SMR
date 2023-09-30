@@ -29,5 +29,5 @@ if __name__ == "__main__":
 
         utility[i] = admm_mix_algorithm(SliceNum, UENum, RESNum, alpha, weight, simulated_optimization)[-1]
 
-    scipy.io.savemat('/Users/apoorvgarg/PycharmProjects/BTP-Slice-RL/result/result_agent_num.mat', mdict={'utility': utility,})
+    scipy.io.savemat('results/result_agent_num.mat', mdict={'utility': utility,})
 

@@ -36,6 +36,6 @@ if __name__ == "__main__":
     print("********** Utility optimized *******")
     print(utility_opt)
 
-    scipy.io.savemat('/Users/apoorvgarg/PycharmProjects/BTP-Slice-RL/result/result_ADMM_GAP.mat', mdict={'utility': utility, 'utility_opt': utility_opt, 'utility_static': utility_static,
+    scipy.io.savemat('results/result_ADMM_GAP.mat', mdict={'utility': utility, 'utility_opt': utility_opt, 'utility_static': utility_static,
                                                                              'gap': gap, 'gap_opt': gap_opt, 'gap_static': gap_static,})
 

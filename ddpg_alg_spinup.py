@@ -43,11 +43,11 @@ class ReplayBuffer:
                     done=self.done_buf[idxs])
 
     def restore_buffer_from_file(self):
-        fileop = open("saved_buffer.pickle", "rb")
+        fileop = open("pickled_data/saved_buffer.pickle", "rb")
         [self.obs1_buf, self.obs2_buf, self.acts_buf, self.rews_buf, self.done_buf, self.ptr, self.size, self.max_size] = pickle.load(fileop)
 
     def store_buffer_into_file(self):
-        fileop = open("saved_buffer.pickle", "wb")
+        fileop = open("pickled_data/saved_buffer.pickle", "wb")
         dump_buffer = [self.obs1_buf, self.obs2_buf, self.acts_buf, self.rews_buf, self.done_buf, self.ptr, self.size, self.max_size]
         pickle.dump(dump_buffer, fileop)
 

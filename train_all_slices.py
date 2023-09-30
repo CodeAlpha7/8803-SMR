@@ -15,10 +15,10 @@ from t3_ddpg_alg_spinup import td3
 
 if __name__ == "__main__":
 
-    with open("saved_alpha.pickle", "wb") as fileop:
+    with open("pickled_data/saved_alpha.pickle", "wb") as fileop:
         pickle.dump(alpha, fileop)
 
-    with open("saved_weight.pickle", "wb") as fileop:
+    with open("pickled_data/saved_weight.pickle", "wb") as fileop:
         pickle.dump(weight, fileop)
 
     ########################################################################################################################
@@ -59,11 +59,11 @@ if __name__ == "__main__":
 
     #####################################          result ploting            ###############################################
 
-    with open("saved_alpha.pickle", "rb") as fileop:
+    with open("pickled_data/saved_alpha.pickle", "rb") as fileop:
         load_alpha = pickle.load(fileop)
         print(load_alpha)
 
-    with open("saved_weight.pickle", "rb") as fileop:
+    with open("pickled_data/saved_weight.pickle", "rb") as fileop:
         load_weight = pickle.load(fileop)
         print(load_weight)
 
