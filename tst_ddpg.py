@@ -11,7 +11,7 @@ import matplotlib.pyplot as matplt
 
 def load_policy(fpath, itr='last', deterministic=False):
 
-    tf.reset_default_graph()
+    tf.compat.v1.reset_default_graph()
     # handle which epoch to load from
     if itr=='last':
         saves = [int(x[11:]) for x in os.listdir(fpath) if 'tf1_save' in x and len(x)>11]
