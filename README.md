@@ -11,11 +11,10 @@ For Windows, [this link](https://docs.python.org/3/library/venv.html) might be u
 - Python 3.6
 - Conda
 
-### Create a virtual environment
+### Create a virtual environment with conda requirements
 ```bash
 conda create --name cs8803 python=3.6 --file requirements_conda.yml
 ```
-TODO: add conda reqs
 
 ### Activate the virtual environment
 ```bash
@@ -26,12 +25,13 @@ and to deactivate:
 conda deactivate
 ```
 
-### Install dependencies
+### Install additional PIP dependencies
 ```bash
 pip install -r requirements_pip.txt
 ```
 Some dependencies require additional setup:
 - OpenAI Spinup ([setup](https://spinningup.openai.com/en/latest/user/installation.html))
+    - Spinup module is already included in this repo:
     - `cd spinningup`
     - `pip install -e .` or `conda develop .`
 
@@ -41,7 +41,7 @@ Some dependencies require additional setup:
 
 ## Must haves
 - [ ] Re-organize codebase structure
-- [ ] Change absolute paths to relative paths
+- [✓] Change absolute paths to relative paths
 - [✓] Refactor import statements (built-in, third-party, local)
 - [✓] Create environment
 - [✓] List dependencies in `requirements.txt`
