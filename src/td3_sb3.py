@@ -111,6 +111,7 @@ def td3(env, policy_kwargs=dict(), seed=0,
 
     # Main loop: collect experience in env and update/log each epoch   
     model.learn(total_timesteps=total_steps, log_interval=10)
+    model.save(logger_kwargs["output_dir"])
 
 
 

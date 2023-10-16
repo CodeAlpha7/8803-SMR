@@ -1,20 +1,10 @@
-import time
-import pickle
-
 import scipy.io
 import numpy as np
-import cvxpy as cp
-import tensorflow as tf
-import matplotlib.pyplot as matplt
 
-from utils import *
-from tst_ddpg import *
 from functions import *
 from parameters import *
-from env_mra import ResourceEnv
-from ddpg_alg_spinup import ddpg
 from ADMM import admm_opt_algorithm
-from ADMM import admm_ddpg_algorithm
+from ADMM import admm_td3_algorithm
 from ADMM import admm_static_algorithm
 
 
@@ -27,7 +17,7 @@ if __name__ == "__main__":
     print("********** Utility Static *******")
     print(utility_static)
 
-    utility, gap = admm_ddpg_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX)
+    utility, gap = admm_td3_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX)
     print("********** Utility *******")
 
     print(utility)

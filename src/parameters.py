@@ -23,7 +23,7 @@ Rmin = 0
 
 replay_size = int(1e6)
 steps_per_epoch = 5000  # at least 5000 * 100 since we have to learn the augmented state space (ADMM penalty)
-epochs = 50
+epochs = 200
 batch_size = 1000
 pi_lr = 1e-3
 q_lr = 1e-3

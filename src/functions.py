@@ -1,24 +1,39 @@
 import numpy as np
-import tensorflow as tf
 import cvxpy as cp
-import matplotlib.pyplot as matplt
+import time
 
-from utils import *
-from tst_ddpg import *
 from parameters import *
 from env_mra import ResourceEnv
-from ddpg_alg_spinup import ddpg
+from stable_baselines3 import DDPG
+
+def run_policy(env, model, max_ep_len=None, num_episodes=100, render=True):
+    ep_action, ep_reward, ep_utility = [], [], []
+    o, info = env.reset()
+    r, d, ep_ret, ep_len, n = 0, False, 0, 0, 0
+    while n < num_episodes:
+        if render:
+            env.render()
+            time.sleep(1e-3)
+        a, _ = model.predict(o)
+        o, r, d, _, info = env.step(a)
+        ep_ret += r
+        ep_len += 1
+        ep_action.append(np.reshape(a, [env.num_res, env.UENum]))
+        ep_reward.append(r)
+        ep_utility.append(info["utility"])
+        if d or (ep_len == max_ep_len):
+            print('Episode %d \t EpRet %.3f \t EpLen %d'%(n, ep_ret, ep_len))
+            o, info = env.reset()
+            r, d, ep_ret, ep_len, n = 0, False, 0, 0, 0
+            n += 1
+
+    return np.array(ep_reward), np.array(ep_action), np.array(ep_utility)
 
 
-def load_and_run_policy(agent_id, alpha, weight, UENum, RESNum, aug_penalty, ):
-    _, get_action, sess = load_policy(str(RESNum) +'slice' + str(agent_id))
-
+def load_and_run_policy(agent_id, alpha, weight, UENum, RESNum, aug_penalty):
+    model = DDPG.load(str(RESNum) +'slice' + str(agent_id))
     env = ResourceEnv(alpha=alpha, weight=weight, num_user=UENum, num_res=RESNum, min_reward=minReward, max_time=maxTime, rho=rho, aug_penalty=aug_penalty, test_env=False)
-
-    ep_reward, ep_action, ep_utility = run_policy(env, get_action, num_episodes=1, render=False)
-
-    sess.close()
-    # ep_action = tmpx
+    ep_reward, ep_action, ep_utility = run_policy(env, model, num_episodes=1, render=False)
     return np.sum(ep_reward), ep_action, np.sum(ep_utility)
 
 

@@ -1,9 +1,9 @@
-import sys
 import time
 import random
 import pickle
 
 import numpy as np
+import matplotlib as matplt
 
 from functions import *
 

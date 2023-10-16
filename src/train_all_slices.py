@@ -9,6 +9,7 @@ from parameters import *
 from env_mra import ResourceEnv
 # from ddpg_alg_spinup import ddpg
 from td3_sb3 import td3
+from ddpg_sb3 import ddpg
 
 
 if __name__ == "__main__":
@@ -29,7 +30,7 @@ if __name__ == "__main__":
     for i in range(SliceNum):
         policy_kwargs = dict(net_arch=hidden_sizes, activation_fn=torch.nn.ReLU)
 
-        logger_kwargs = dict(output_dir=str(RESNum) + 'slice' + str(i), exp_name=str(RESNum) + 'slice_exp' + str(i))
+        logger_kwargs = dict(output_dir='td3_model/' + str(RESNum) + 'slice' + str(i), exp_name=str(RESNum) + 'slice_exp' + str(i))
 
         env = ResourceEnv(alpha=alpha[i], weight=weight[i],
                           num_res=RESNum, num_user=UENum,
@@ -44,9 +45,9 @@ if __name__ == "__main__":
                             logger_kwargs=logger_kwargs, fresh_learn_idx=True)
         
 
-        # utility[i], _ = ddpg(env=env, ac_kwargs=ac_kwargs,
+        # utility[i], _ = ddpg(env=env, policy_kwargs=policy_kwargs,
         #                     steps_per_epoch=steps_per_epoch,
-        #                     epochs=epochs, pi_lr=pi_lr, q_lr=q_lr,
+        #                     epochs=epochs, lr=pi_lr,
         #                     start_steps=start_steps, batch_size=batch_size,
         #                     seed=seed, replay_size=replay_size, max_ep_len=maxTime,
         #                     logger_kwargs=logger_kwargs, fresh_learn_idx=True)

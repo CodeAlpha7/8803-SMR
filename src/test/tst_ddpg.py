@@ -5,9 +5,6 @@ import os.path as osp
 import joblib
 import numpy as np
 import tensorflow as tf
-import matplotlib.pyplot as matplt
-
-from spinup.utils.logx import EpochLogger
 from spinup.utils.logx import restore_tf_graph
 
 
@@ -58,9 +55,7 @@ def run_policy(env, get_action, max_ep_len=None, num_episodes=100, render=True):
         "page on Experiment Outputs for how to handle this situation."
 
     ep_action, ep_reward, ep_utility = [], [], []
-    #logger = EpochLogger()
     o, r, d, ep_ret, ep_len, n = env.reset(), 0, False, 0, 0, 0
-    penalty = o[-env.num_res:]
     while n < num_episodes:
         if render:
             env.render()
@@ -75,25 +70,9 @@ def run_policy(env, get_action, max_ep_len=None, num_episodes=100, render=True):
         ep_reward.append(r)
         ep_utility.append(info)
         if d or (ep_len == max_ep_len):
-            #logger.store(EpRet=ep_ret, EpLen=ep_len)
             print('Episode %d \t EpRet %.3f \t EpLen %d'%(n, ep_ret, ep_len))
             o, r, d, ep_ret, ep_len = env.reset(), 0, False, 0, 0
             n += 1
-
-    #logger.log_tabular('EpRet', with_min_and_max=True)
-    #logger.log_tabular('EpLen', average_only=True)
-    #logger.dump_tabular()
-
-    #matplt.subplot(3,1,1)
-    #matplt.plot(np.sum(ep_action, axis=1))
-    #matplt.plot((penalty/env.Rmax)*np.ones(len(ep_reward)))
-    #matplt.subplot(3,1,2)
-    #matplt.plot(ep_reward)
-    #matplt.subplot(3,1,3)
-    #matplt.plot(ep_utility)
-    # matplt.plot(np.sum(ep_action,axis=1))
-    #print(np.sum(np.mean(ep_action, axis=0)), np.sum(penalty)/100)
-    #matplt.show()
 
     return np.array(ep_reward), np.array(ep_action), np.array(ep_utility)
 

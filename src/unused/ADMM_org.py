@@ -3,18 +3,12 @@ import pickle
 import multiprocessing
 
 import scipy.io
-import cvxpy as cp
-import numpy as np
-import tensorflow as tf
-import matplotlib.pyplot as matplt
 from numpy.random import default_rng
 
 from utils import *
-from test_ddpg import *
+from test.test_ddpg import *
 from functions import *
 from parameters import *
-from env_mra import ResourceEnv
-from ddpg_alg_spinup import ddpg
 
 
 def admm_static_algorithm(SliceNum, UENum, RESNum, alpha, weight,):

@@ -1,23 +1,12 @@
-import time
-import pickle
-import multiprocessing
-
 import scipy.io
 import numpy as np
-import cvxpy as cp
-import tensorflow as tf
-import matplotlib.pyplot as matplt
 from numpy.random import default_rng
 
-from utils import *
-from tst_ddpg import *
 from functions import *
 from parameters import *
-from ddpg_alg_spinup import ddpg
-from env_mra import ResourceEnv
 
 
-def admm_static_algorithm(sliceNo, ueNo, resNo, alpha, weight, ):
+def admm_static_algorithm(sliceNo, ueNo, resNo, alpha, weight):
     # static allocation
     real_utility_static = np.zeros(sliceNo)
 

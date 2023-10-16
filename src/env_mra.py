@@ -78,7 +78,7 @@ class ResourceEnv(gym.Env):
             done = True
             self.reset()
 
-        info = self._get_info()
+        info = {"utility": np.sum(weight_reward)}
 
         # np.sum(weight_reward)
 
