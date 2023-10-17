@@ -13,7 +13,7 @@ For Windows, [this link](https://docs.python.org/3/library/venv.html) might be u
 
 ### Create a virtual environment with conda requirements
 ```bash
-conda create --name cs8803 python=3.6 --file requirements_conda.yml
+conda env create --name cs8803 python=3.6 --file requirements_conda.yml
 ```
 
 ### Activate the virtual environment
