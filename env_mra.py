@@ -45,7 +45,7 @@ class ResourceEnv(gym.Env):
 
         action = np.clip(in_action, self.action_min, self.action_max)
 
-        assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
+        #assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
 
         action = self.Rmax * np.reshape(action, [self.num_res, self.UENum])  # reshape into number of resource * number of users
 

@@ -318,8 +318,13 @@ if __name__ == "__main__":
 
             print('INDEX IS ' + str(INDEX))
 
-            utility_static[ite], utility_ddpg[ite], utility_opt[ite] = main_admm_algorithm(SliceNum, UENum, RESNum,
-                                                                                           alpha_, weight_, INDEX)
+            utility_static[ite], utility_ddpg[ite], utility_opt[ite] = main_admm_algorithm(
+                SliceNum, 
+                UENum, 
+                RESNum,
+                                                                                           alpha_, 
+                                                                                           weight_, 
+                                                                                           INDEX)
 
         scipy.io.savemat('results/Apooorv_tests' + str(SliceNum) + '.mat',
                          mdict={'utility_static': utility_static,
