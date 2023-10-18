@@ -40,7 +40,6 @@ pkginfo
 pluggy
 psutil
 pybind11==2.11.1
-pycosat
 pycparser
 pyOpenSSL
 pyparsing==3.1.1
