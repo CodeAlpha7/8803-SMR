@@ -8,11 +8,6 @@ charset-normalizer
 clarabel==0.6.0
 click
 cloudpickle==3.0.0
-conda
-conda-build
-conda-package-handling
-conda_index
-conda_package_streaming
 contourpy==1.1.1
 cryptography
 cvxpy==1.4.1
