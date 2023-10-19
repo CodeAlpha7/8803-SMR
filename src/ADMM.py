@@ -311,9 +311,10 @@ if __name__ == "__main__":
                 SliceNum, 
                 UENum, 
                 RESNum,
-                                                                                           alpha_, 
-                                                                                           weight_, 
-                                                                                           INDEX)
+                alpha_, 
+                weight_, 
+                INDEX
+            )
 
         scipy.io.savemat('results/Apooorv_tests' + str(SliceNum) + '.mat',
                          mdict={'utility_static': utility_static,
