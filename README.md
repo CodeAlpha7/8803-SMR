@@ -5,15 +5,14 @@ If you want to reset state information during new simulation run, try reinitiati
 
 ## Setup
 This setup is for Linux and Mac OS.
-
 For Windows, [this link](https://docs.python.org/3/library/venv.html) might be useful.
+
 ### Requirements
-- Python 3.6
 - Conda
 
 ### Create a virtual environment with conda requirements
 ```bash
-conda env create --name cs8803 python=3.6 --file requirements_conda.yml
+conda create --name cs8803 python=3.9.18
 ```
 
 ### Activate the virtual environment
@@ -27,9 +26,11 @@ conda deactivate
 
 ### Install additional PIP dependencies
 ```bash
-pip install -r requirements_pip.txt
+pip install -r requirements.txt
 ```
-Some dependencies require additional setup:
+
+
+**If using Spinup** some dependencies require additional setup:
 - OpenAI Spinup ([setup](https://spinningup.openai.com/en/latest/user/installation.html))
     - Spinup module is already included in this repo:
     - `cd spinningup`
@@ -37,22 +38,9 @@ Some dependencies require additional setup:
 
 ## Usage
 
-# Refactoring TODOs
+## Changes 
 
-## Must haves
-- [ ] Re-organize codebase structure
-- [x] Change absolute paths to relative paths
-- [x] Refactor import statements (built-in, third-party, local)
-- [x] Create environment
-- [x] List dependencies in `requirements.txt`
-- [x] Add usage and other instructions on README.md
-- [ ] Run profiler
-- [ ] Fix eventual bottlenecks
-
-## Nice to haves
-- [ ] Add some feedback when scrips run so user knows what is happening
-
-## TD3 Changes
+### TD3 Changes
 - Previously the noise comes from a random number between 0 and 1, 
 now I'm using the default in Stable Baselines 3 which is a Gaussian distribution
 - Previously, the Replay Buffer class was defined by us,
