@@ -6,6 +6,8 @@ from parameters import *
 from env_mra import ResourceEnv
 from stable_baselines3 import DDPG
 
+TD3_PATH_PREFIX = "td3_progress/"
+
 def run_policy(env, model, max_ep_len=None, num_episodes=100, render=True):
     ep_action, ep_reward, ep_utility = [], [], []
     o, info = env.reset()
@@ -31,7 +33,9 @@ def run_policy(env, model, max_ep_len=None, num_episodes=100, render=True):
 
 
 def load_and_run_policy(agent_id, alpha, weight, UENum, RESNum, aug_penalty):
-    model = DDPG.load(str(RESNum) +'slice' + str(agent_id))
+    #TODO: figure out what path to load from (looking for a zip file?)
+    path = f"{TD3_PATH_PREFIX}{RESNum}slice{agent_id}/vars.pkl"
+    model = DDPG.load(path)
     env = ResourceEnv(alpha=alpha, weight=weight, num_user=UENum, num_res=RESNum, min_reward=minReward, max_time=maxTime, rho=rho, aug_penalty=aug_penalty, test_env=False)
     ep_reward, ep_action, ep_utility = run_policy(env, model, num_episodes=1, render=False)
     return np.sum(ep_reward), ep_action, np.sum(ep_utility)

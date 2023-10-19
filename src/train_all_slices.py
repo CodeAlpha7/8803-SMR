@@ -1,3 +1,4 @@
+import argparse
 import time
 import pickle
 
@@ -7,12 +8,23 @@ import matplotlib.pyplot as matplt
 
 from parameters import *
 from env_mra import ResourceEnv
-# from ddpg_alg_spinup import ddpg
 from td3_sb3 import td3
 from ddpg_sb3 import ddpg
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Train using TD3 or DDPG algorithms.")
+    parser.add_argument(
+        'algorithm',
+        choices=['td3', 'ddpg'],
+        help="Choose the RL algorithm (td3 or ddpg)"
+    )
+    args = parser.parse_args()
+    return args
+
 if __name__ == "__main__":
+
+    args = parse_args()
 
     with open("pickled_data/saved_alpha.pickle", "wb") as fileop:
         pickle.dump(alpha, fileop)
@@ -37,20 +49,20 @@ if __name__ == "__main__":
                           max_time=maxTime, min_reward=minReward,
                           rho=rho, test_env=False)
 
-        utility[i], _ = td3(env=env, policy_kwargs=policy_kwargs,
-                            steps_per_epoch=steps_per_epoch,
-                            epochs=epochs, lr=pi_lr,
-                            start_steps=start_steps, batch_size=batch_size,
-                            seed=seed, replay_size=replay_size, max_ep_len=maxTime,
-                            logger_kwargs=logger_kwargs, fresh_learn_idx=True)
-        
-
-        # utility[i], _ = ddpg(env=env, policy_kwargs=policy_kwargs,
-        #                     steps_per_epoch=steps_per_epoch,
-        #                     epochs=epochs, lr=pi_lr,
-        #                     start_steps=start_steps, batch_size=batch_size,
-        #                     seed=seed, replay_size=replay_size, max_ep_len=maxTime,
-        #                     logger_kwargs=logger_kwargs, fresh_learn_idx=True)
+        if args.algorithm == 'td3':
+            utility[i], _ = td3(env=env, policy_kwargs=policy_kwargs,
+                                steps_per_epoch=steps_per_epoch,
+                                epochs=epochs, lr=pi_lr,
+                                start_steps=start_steps, batch_size=batch_size,
+                                seed=seed, replay_size=replay_size, max_ep_len=maxTime,
+                                logger_kwargs=logger_kwargs, fresh_learn_idx=True)
+        elif args.algorithm == 'ddpg':
+            utility[i], _ = ddpg(env=env, policy_kwargs=policy_kwargs,
+                                steps_per_epoch=steps_per_epoch,
+                                epochs=epochs, lr=pi_lr,
+                                start_steps=start_steps, batch_size=batch_size,
+                                seed=seed, replay_size=replay_size, max_ep_len=maxTime,
+                                logger_kwargs=logger_kwargs, fresh_learn_idx=True)
 
         print('slice' + str(i) + 'training completed.')
 
