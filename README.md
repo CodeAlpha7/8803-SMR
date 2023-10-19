@@ -37,6 +37,14 @@ pip install -r requirements.txt
     - `pip install -e .` or `conda develop .`
 
 ## Usage
+### Train slices
+```bash
+python src/train_all_slices.py [td3 | ddpg]
+```
+e.g.
+```bash
+python src/train_all_slices.py td3
+```
 
 ## Changes 
 
