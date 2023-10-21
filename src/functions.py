@@ -31,9 +31,9 @@ def run_policy(env, model, max_ep_len=None, num_episodes=100, render=True):
     return np.array(ep_reward), np.array(ep_action), np.array(ep_utility)
 
 
-def load_and_run_policy(agent_id, alpha, weight, UENum, RESNum, aug_penalty, algo="unknown"):
-    path = f"{algo}_progress/{RESNum}slice{agent_id}/vars.pkl"
-    model = DDPG.load(path)
+def load_and_run_policy(agent_id, alpha, weight, UENum, RESNum, aug_penalty, model_path):
+    slice_path = f"{model_path}/{RESNum}slice{agent_id}.zip"
+    model = DDPG.load(slice_path)
     print("loading")
     env = ResourceEnv(alpha=alpha, weight=weight, num_user=UENum, num_res=RESNum, min_reward=minReward, max_time=maxTime, rho=rho, aug_penalty=aug_penalty, test_env=False)
     ep_reward, ep_action, ep_utility = run_policy(env, model, num_episodes=1, render=False)

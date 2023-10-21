@@ -1,3 +1,5 @@
+import argparse
+
 import scipy.io
 import numpy as np
 
@@ -8,7 +10,16 @@ from ADMM import admm_td3_algorithm
 from ADMM import admm_static_algorithm
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description='ADMM Algorithm')
+    parser.add_argument('model_path', type=str, help='Path to the model to be used')
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == "__main__":
+
+    args = parse_args()
 
     #utility = np.zeros(ADMM_iter)
     INDEX = np.arange(SliceNum)
@@ -17,7 +28,7 @@ if __name__ == "__main__":
     print("********** Utility Static *******")
     print(utility_static)
 
-    utility, gap = admm_td3_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX)
+    utility, gap = admm_td3_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX, model_path=args.model_path)
     print("********** Utility *******")
 
     print(utility)
