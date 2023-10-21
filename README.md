@@ -36,8 +36,8 @@ pip install -r requirements.txt
     - `cd spinningup`
     - `pip install -e .` or `conda develop .`
 
-## Usage
-### Train slices
+# Usage
+## Train slices
 ```bash
 python src/train_all_slices.py [td3 | ddpg]
 ```
@@ -54,7 +54,7 @@ E.g.
 python src/train_all_slices.py td3 --name my_experiment
 ```
 
-### Training results
+### Results
 
 Once the training is done, the results will be saved in `models/` and will have the following naming convention:
 
