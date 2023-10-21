@@ -42,7 +42,8 @@ if __name__ == "__main__":
     for i in range(SliceNum):
         policy_kwargs = dict(net_arch=hidden_sizes, activation_fn=torch.nn.ReLU)
 
-        logger_kwargs = dict(output_dir='td3_model/' + str(RESNum) + 'slice' + str(i), exp_name=str(RESNum) + 'slice_exp' + str(i))
+        path = f"{args.algorithm}_model/{RESNum}slice{i}"
+        logger_kwargs = dict(output_dir=path, exp_name=str(RESNum) + 'slice_exp' + str(i))
 
         env = ResourceEnv(alpha=alpha[i], weight=weight[i],
                           num_res=RESNum, num_user=UENum,
@@ -56,6 +57,7 @@ if __name__ == "__main__":
                                 start_steps=start_steps, batch_size=batch_size,
                                 seed=seed, replay_size=replay_size, max_ep_len=maxTime,
                                 logger_kwargs=logger_kwargs, fresh_learn_idx=True)
+            
         elif args.algorithm == 'ddpg':
             utility[i], _ = ddpg(env=env, policy_kwargs=policy_kwargs,
                                 steps_per_epoch=steps_per_epoch,
@@ -85,6 +87,6 @@ if __name__ == "__main__":
     # matplt.plot(sum_utility)
     # matplt.subplot(2, 1, 2)
     # matplt.plot(sum_x)
-    matplt.show()
+    # matplt.show()
 
     print('done')

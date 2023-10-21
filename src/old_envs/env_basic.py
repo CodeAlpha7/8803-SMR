@@ -4,6 +4,7 @@ from gym.utils import seeding
 import numpy as np
 import matplotlib.pyplot as matplt
 
+
 class ResourceEnv(gym.Env):
 
     def __init__(self, total_resource=1.0, num_user=5, min_reward=100, max_time=100, rho=0.01, aug_penalty=1.0, random_seed=55674):
@@ -49,7 +50,7 @@ class ResourceEnv(gym.Env):
         assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
 
         real_reward = self.calculate_reward(action)
-
+        
         penalty = self.rho * np.abs(self.aug_penalty - np.sum(action))  # should be square but too small when gap is 0.1, not good for convergence
 
         weight_reward = np.multiply(real_reward, self.weight)

@@ -46,12 +46,14 @@ def admm_ddpg_algorithm(sliceNo, ueNo, resNo, alpha, weight, idx):
 
         # x-update in each slice #####################################
         for i in range(sliceNo):
-            aug_utility[i], tmpx, real_utility[i] = load_and_run_policy(agent_id=idx[i],
-                                                                        alpha=alpha[i],
-                                                                        weight=weight[i],
-                                                                        UENum=ueNo,
-                                                                        RESNum=resNo,
-                                                                        aug_penalty=z_minus_u[i])
+            aug_utility[i], tmpx, real_utility[i] = load_and_run_policy(
+                agent_id=idx[i],
+                alpha=alpha[i],
+                weight=weight[i],
+                UENum=ueNo,
+                RESNum=resNo,
+                aug_penalty=z_minus_u[i]
+            )
             print('tmpx is')
             print(tmpx)
             x[i] = Rmax * np.mean(tmpx, axis=0)  # mean for all maxTime
@@ -95,12 +97,14 @@ def admm_td3_algorithm(sliceNo, ueNo, resNo, alpha, weight, idx):
 
         # x-update in each slice #####################################
         for i in range(sliceNo):
-            aug_utility[i], tmpx, real_utility[i] = load_and_run_policy(agent_id=idx[i],
-                                                                        alpha=alpha[i],
-                                                                        weight=weight[i],
-                                                                        UENum=ueNo,
-                                                                        RESNum=resNo,
-                                                                        aug_penalty=z_minus_u[i])
+            aug_utility[i], tmpx, real_utility[i] = load_and_run_policy(
+                agent_id=idx[i],
+                alpha=alpha[i],
+                weight=weight[i],
+                UENum=ueNo,
+                RESNum=resNo,
+                aug_penalty=z_minus_u[i]
+            )
 
             x[i] = Rmax * np.mean(tmpx, axis=0)  # mean for all maxTime
 
