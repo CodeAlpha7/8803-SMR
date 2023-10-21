@@ -74,22 +74,24 @@ if __name__ == "__main__":
             ("steps_per_epoch", steps_per_epoch),
             ("batch_size", batch_size),
             ("pi_lr", pi_lr),
-            ("start_steps", start_steps),
-            ("policy_kwargs",)
+            ("start_steps", start_steps)
     ])
 
     with open(f"{dst_dir_path}/parameters.txt", "w") as fileop:
         for entry in parameters_list:
-            if type(entry) != tuple:
-                string_to_write = f"{'-'*80}\n\t{entry}\n{'-'*80}\n"
-            else:
+
+            if type(entry) == tuple:
                 param_name, param_value = entry
+
+                # if value is a long string, add custom formatting
                 if str(param_value).count("\n") > 0:
-                    # if value is a long string, add custom formatting
                     param_value = str(param_value).replace("\n\n", "\n")
                     string_to_write = f"{param_name}:\n{param_value}\n\n"
                 else:
                     string_to_write = f"{param_name}: {param_value}\n"
+
+            else:
+                string_to_write = f"{'-'*80}\n\t{entry}\n{'-'*80}\n"
 
             fileop.write(string_to_write)
 

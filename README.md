@@ -46,6 +46,24 @@ e.g.
 python src/train_all_slices.py td3
 ```
 
+Run `python src/train_all_slices.py -h` for more options.
+
+You can also add a custom experiment name with `--name <name>`.
+E.g.
+```bash
+python src/train_all_slices.py td3 --name my_experiment
+```
+
+### Training results
+
+Once the training is done, the results will be saved in `models/` and will have the following naming convention:
+
+`<algo>_<timestamp>` if the name is not specified, or
+
+`<algo>_<timestamp>_<name>` if the name is specified.
+
+Inside such folder you will also find a `parameters.txt` file that lists the parameters used.
+
 ## Changes 
 
 ### TD3 Changes
