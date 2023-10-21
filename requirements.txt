@@ -54,6 +54,7 @@ ruamel.yaml.clib==0.2.8
 scipy==1.11.3
 scs==3.2.3
 six==1.16.0
+snakeviz=2.1.1
 soupsieve==2.5
 stable-baselines3==2.1.0
 sympy==1.12

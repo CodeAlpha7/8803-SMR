@@ -50,7 +50,6 @@ class ResourceEnv(gym.Env):
         assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
 
         real_reward = self.calculate_reward(action)
-        
         penalty = self.rho * np.abs(self.aug_penalty - np.sum(action))  # should be square but too small when gap is 0.1, not good for convergence
 
         weight_reward = np.multiply(real_reward, self.weight)
