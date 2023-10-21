@@ -120,8 +120,9 @@ def td3(env, policy_kwargs=dict(), seed=0,
     total_reward.append(test_ret)
     total_action.append(test_act)
 
-    matplt.figure()
-    matplt.plot(total_reward)
-    matplt.savefig('slice_training' + str(int(time.time())) + '.png')
-    matplt.show()
+    # matplt.figure()
+    # matplt.plot(total_reward)
+    # matplt.savefig('slice_training' + str(int(time.time())) + '.png')
+    # matplt.show()
+
     return total_reward[-1], np.transpose(total_action[-1])  # for reshape the results

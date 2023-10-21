@@ -115,15 +115,14 @@ def ddpg(env, policy_kwargs=dict(), seed=0,
     model.learn(total_timesteps=total_steps, log_interval=10)
     model.save(logger_kwargs["output_dir"])
 
-
-
     # Test the performance of the deterministic version of the agent.
     test_ret, test_act = test_agent()
     total_reward.append(test_ret)
     total_action.append(test_act)
 
-    matplt.figure()
-    matplt.plot(total_reward)
-    matplt.savefig('slice_training' + str(int(time.time())) + '.png')
-    matplt.show()
+    # matplt.figure()
+    # matplt.plot(total_reward)
+    # matplt.savefig('slice_training' + str(int(time.time())) + '.png')
+    # matplt.show()
+
     return total_reward[-1], np.transpose(total_action[-1])  # for reshape the results
