@@ -1,3 +1,4 @@
+import os
 import argparse
 
 import scipy.io
@@ -10,6 +11,9 @@ from ADMM import admm_td3_algorithm
 from ADMM import admm_static_algorithm
 
 
+DST_DIR = "new_results"
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description='ADMM Algorithm')
     parser.add_argument('model_path', type=str, help='Path to the model to be used')
@@ -20,6 +24,8 @@ def parse_args():
 if __name__ == "__main__":
 
     args = parse_args()
+
+    model_name = args.model_path.split("/")[-2]
 
     #utility = np.zeros(ADMM_iter)
     INDEX = np.arange(SliceNum)
@@ -37,6 +43,8 @@ if __name__ == "__main__":
     print("********** Utility optimized *******")
     print(utility_opt)
 
-    scipy.io.savemat('new_results/result_ADMM_GAP.mat', mdict={'utility': utility, 'utility_opt': utility_opt, 'utility_static': utility_static,
+    os.makedirs(DST_DIR, exist_ok=True)
+
+    scipy.io.savemat(f'{DST_DIR}/result_ADMM_GAP_{model_name}.mat', mdict={'utility': utility, 'utility_opt': utility_opt, 'utility_static': utility_static,
                                                                              'gap': gap, 'gap_opt': gap_opt, 'gap_static': gap_static,})
 
