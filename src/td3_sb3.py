@@ -5,6 +5,8 @@ import matplotlib.pyplot as matplt
 
 from stable_baselines3 import TD3
 from stable_baselines3.common.noise import NormalActionNoise
+from td3_net_arch import CustomTD3Policy
+TD3.policy_aliases["CustomTD3Policy"] = CustomTD3Policy
 
 
 
@@ -84,7 +86,7 @@ def td3(env, policy_kwargs=dict(), seed=0,
     # The noise objects for TD3
     n_actions = env.action_space.shape[-1]
     action_noise = NormalActionNoise(mean=np.zeros(n_actions), sigma=0.1 * np.ones(n_actions))
-    model = TD3("MlpPolicy", env, action_noise=action_noise, batch_size=batch_size, learning_rate=lr, gamma=gamma, train_freq=update_every, seed=seed, verbose=1, policy_kwargs=policy_kwargs) #missing replay buffer and policy_kwargs
+    model = TD3("CustomTD3Policy", env, action_noise=action_noise, batch_size=batch_size, learning_rate=lr, gamma=gamma, tau=polyak, train_freq=update_every, seed=seed, verbose=1, policy_kwargs=policy_kwargs) #missing replay buffer and policy_kwargs
 
     test_env = env
 

@@ -35,8 +35,9 @@ def load_and_run_policy(agent_id, alpha, weight, UENum, RESNum, aug_penalty, mod
     slice_path = f"{model_path}/{RESNum}slice{agent_id}.zip"
     model = DDPG.load(slice_path)
     print("loading")
-    env = ResourceEnv(alpha=alpha, weight=weight, num_user=UENum, num_res=RESNum, min_reward=minReward, max_time=maxTime, rho=rho, aug_penalty=aug_penalty, test_env=False)
+    env = ResourceEnv(alpha=alpha, weight=weight, num_user=UENum, num_res=RESNum, min_reward=minReward, max_time=maxTime, rho=rho, aug_penalty=aug_penalty, test_env=True)
     ep_reward, ep_action, ep_utility = run_policy(env, model, num_episodes=1, render=False)
+    print("ACTION: ", ep_action.shape)
     return np.sum(ep_reward), ep_action, np.sum(ep_utility)
 
 

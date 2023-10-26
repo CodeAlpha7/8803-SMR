@@ -27,7 +27,7 @@ class ResourceEnv(gym.Env):
         self.state_min = np.zeros(self.UENum+self.num_res)
         self.state_max = np.ones(self.UENum+self.num_res)
 
-        self.action_space = spaces.Box(self.action_min, self.action_max, dtype=np.float32)
+        self.action_space = spaces.Box(low=0.0, high=1.0, shape=(5,), dtype=np.float32)
         self.observation_space = spaces.Box(self.state_min, self.state_max, dtype=np.float32)
 
         self.action_dim = self.action_space.shape[0]
@@ -43,8 +43,8 @@ class ResourceEnv(gym.Env):
 
     def step(self, in_action):
 
-        action = np.clip(in_action, self.action_min, self.action_max)
-        # assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
+        action = np.clip(in_action, self.action_min, self.action_max).astype('float32')
+        assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
 
         action = self.Rmax * np.reshape(action, [self.num_res, self.UENum])  # reshape into number of resource * number of users
 
@@ -80,8 +80,6 @@ class ResourceEnv(gym.Env):
 
         info = {"utility": np.sum(weight_reward)}
 
-        # np.sum(weight_reward)
-
         return final_state, final_reward, done, False, info
 
     def calculate_reward(self, action):
@@ -94,7 +92,7 @@ class ResourceEnv(gym.Env):
                 if use_other_utility_function:
                     reward[i][j] = self.Rmax/(self.Rmax * np.exp(- self.alpha[i][j] * action[i][j]) + 1)
 
-        return np.mean(reward, axis=0)   # np.min(reward, axis=0)
+        return np.mean(reward, axis=0)
 
     def tanh_func(self, x, a):
 
