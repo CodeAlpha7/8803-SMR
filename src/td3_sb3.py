@@ -5,7 +5,7 @@ import matplotlib.pyplot as matplt
 
 from stable_baselines3 import TD3
 from stable_baselines3.common.noise import NormalActionNoise
-from td3_net_arch import CustomTD3Policy
+from custom_policies import CustomTD3Policy
 TD3.policy_aliases["CustomTD3Policy"] = CustomTD3Policy
 
 

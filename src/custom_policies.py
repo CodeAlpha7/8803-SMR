@@ -8,7 +8,6 @@ from stable_baselines3.common.torch_layers import BaseFeaturesExtractor, Flatten
 from stable_baselines3.td3.policies import TD3Policy, Actor
 from torch import nn
 from gymnasium import spaces
-from stable_baselines3 import TD3
 import gymnasium as gym
 
 def create_mlp(
@@ -78,8 +77,6 @@ class CustomActor(Actor):
             normalize_images,
             **kwargs
         )
-        # Define custom network with Dropout
-        # WARNING: it must end with a tanh activation to squash the output
         action_dim = get_action_dim(self.action_space)
         self.mu = create_mlp(features_dim, action_dim, net_arch, activation_fn, output_activation=nn.Sigmoid)
 
@@ -171,5 +168,39 @@ class CustomTD3Policy(TD3Policy):
         critic_kwargs = self._update_features_extractor(self.critic_kwargs, features_extractor)
         return CustomContinuousCritic(**critic_kwargs).to(self.device)
 
-# To register a policy, so you can use a string to create the network
-TD3.policy_aliases["CustomTD3Policy"] = CustomTD3Policy
+class CustomDDPGPolicy(TD3Policy):
+    def __init__(self, observation_space,
+        action_space,
+        lr_schedule,
+        net_arch = None,
+        activation_fn = nn.ReLU,
+        features_extractor_class = FlattenExtractor,
+        features_extractor_kwargs = None,
+        normalize_images = True,
+        optimizer_class = th.optim.Adam,
+        optimizer_kwargs = None,
+        n_critics = 1,
+        share_features_extractor = False, 
+        **kwargs):
+        super(CustomDDPGPolicy, self).__init__(
+            observation_space,
+            action_space,
+            lr_schedule,
+            net_arch,
+            activation_fn,
+            features_extractor_class,
+            features_extractor_kwargs,
+            normalize_images,
+            optimizer_class,
+            optimizer_kwargs,
+            n_critics,
+            share_features_extractor, 
+            **kwargs)
+
+    def make_actor(self, features_extractor: Optional[BaseFeaturesExtractor] = None) -> CustomActor:
+        actor_kwargs = self._update_features_extractor(self.actor_kwargs, features_extractor)
+        return CustomActor(**actor_kwargs).to(self.device)
+
+    def make_critic(self, features_extractor: Optional[BaseFeaturesExtractor] = None) -> CustomContinuousCritic:
+        critic_kwargs = self._update_features_extractor(self.critic_kwargs, features_extractor)
+        return CustomContinuousCritic(**critic_kwargs).to(self.device)

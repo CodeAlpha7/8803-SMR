@@ -5,7 +5,8 @@ import matplotlib.pyplot as matplt
 
 from stable_baselines3 import DDPG
 from stable_baselines3.common.noise import NormalActionNoise
-
+from custom_policies import CustomDDPGPolicy
+DDPG.policy_aliases["CustomTD3Policy"] = CustomDDPGPolicy
 
 
 def ddpg(env, policy_kwargs=dict(), seed=0,
