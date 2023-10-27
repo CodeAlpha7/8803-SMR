@@ -11,7 +11,7 @@ SliceNum = 3
 UENum = 5
 RESNum = 1
 seed = 12345678
-maxTime = 360
+maxTime = 20
 ADMM_iter = 10
 
 use_other_utility_function = False  # do no change to True since the function is not convex, cannot be solve by cvxpy
@@ -23,7 +23,7 @@ Rmin = 0
 
 replay_size = int(1e6)
 steps_per_epoch = 5000  # at least 5000 * 100 since we have to learn the augmented state space (ADMM penalty)
-epochs = 20
+epochs = 200
 batch_size = 1000
 pi_lr = 1e-3
 q_lr = 1e-3
@@ -46,15 +46,15 @@ weight_slice = np.random.uniform(0.1, 0.9, SliceNum)
 
 weight = np.array([weight_slice[i] * weight_ue[i] for i in range(SliceNum)])
 
-# print(alpha)
-# with open("pickled_data/saved_alpha.pickle", "wb") as fileop:
-#     print("saved alpha")
-#     pickle.dump(alpha, fileop)
+print(alpha)
+with open("pickled_data/saved_alpha.pickle", "wb") as fileop:
+    print("saved alpha")
+    pickle.dump(alpha, fileop)
 
-# print(weight)
-# with open("pickled_data/saved_weight.pickle", "wb") as fileop:
-#     print("saved weight")
-#     pickle.dump(weight, fileop)
+print(weight)
+with open("pickled_data/saved_weight.pickle", "wb") as fileop:
+    print("saved weight")
+    pickle.dump(weight, fileop)
 
 
 
