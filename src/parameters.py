@@ -4,6 +4,8 @@ import pickle
 import scipy.io
 import numpy as np
 
+USE_SEED = True
+
 ########################################################################################################################
 #####################################        Simulation Parameters         #############################################
 ########################################################################################################################
@@ -23,13 +25,18 @@ Rmin = 0
 
 replay_size = int(1e6)
 steps_per_epoch = 5000  # at least 5000 * 100 since we have to learn the augmented state space (ADMM penalty)
-epochs = 200
+epochs = 25
 batch_size = 1000
 pi_lr = 1e-3
 q_lr = 1e-3
 hidden_sizes = [128, 128]
 start_steps = int(steps_per_epoch*epochs/10)
-rho = 10  #################################################################################################################################################################
+rho = 10 
+
+#################################################################################################################################################################
+
+if USE_SEED:
+    np.random.seed(seed)
 
 # seed += 1
 # np.random.seed(seed)
@@ -40,8 +47,8 @@ alpha = np.random.uniform(0.1, 0.9, [SliceNum, RESNum, UENum])
 #weight = np.random.uniform(0.1, 0.9, [SliceNum, UENum])
 weight_ue = np.random.uniform(0.1, 0.9, [SliceNum, UENum])
 
-seed += 1
-np.random.seed(seed)
+#seed += 1
+#np.random.seed(seed)
 weight_slice = np.random.uniform(0.1, 0.9, SliceNum)
 
 weight = np.array([weight_slice[i] * weight_ue[i] for i in range(SliceNum)])
