@@ -44,9 +44,6 @@ if __name__ == "__main__":
         utility, gap = admm_td3_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX, model_path=args.model_path)
 
     print("********** Utility *******")
-    print("alpha", alpha)
-    print("weight", weight)
-
     print(utility)
 
     utility_opt, gap_opt = admm_opt_algorithm(SliceNum, UENum, RESNum, alpha, weight)

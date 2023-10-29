@@ -59,8 +59,6 @@ def admm_ddpg_algorithm(sliceNo, ueNo, resNo, alpha, weight, idx, model_path):
                 aug_penalty=z_minus_u[i],
                 model_path=model_path
             )
-            print('tmpx is')
-            print(tmpx)
             x[i] = Rmax * np.mean(tmpx, axis=0)  # mean for all maxTime
 
         sumx = np.sum(x, axis=2)  # the sum resource of all users in each slice
