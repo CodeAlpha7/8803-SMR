@@ -17,6 +17,7 @@ def run_policy(env, model, max_ep_len=None, num_episodes=100, render=True):
             time.sleep(1e-3)
         a, _ = model.predict(o)
         o, r, d, _, info = env.step(a)
+        a = (a + 1) / 2
         ep_ret += r
         ep_len += 1
         ep_action.append(np.reshape(a, [env.num_res, env.UENum]))

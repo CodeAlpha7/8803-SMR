@@ -1,10 +1,27 @@
 import time
 
 import numpy as np
+from numpy.typing import DTypeLike
 import matplotlib.pyplot as matplt
 
 from stable_baselines3 import DDPG
-from stable_baselines3.common.noise import NormalActionNoise
+from stable_baselines3.common.noise import ActionNoise
+
+class DecayingNoise(ActionNoise):
+    def __init__(self, mean: np.ndarray, sigma: np.ndarray, total_steps: int, dtype: DTypeLike = np.float32) -> None:
+        self._mu = mean
+        self._sigma = sigma
+        self.decay_ratio = np.exp(np.log(1e-3)/total_steps)
+        self._dtype = dtype
+        super().__init__()
+
+    def __call__(self) -> np.ndarray:
+        rand = np.random.normal(self._mu, self._sigma).astype(self._dtype)
+        self._sigma *= self.decay_ratio
+        return rand
+
+    def __repr__(self) -> str:
+        return f"DecayingNoise(mu={self._mu}, sigma={self._sigma})"
 
 
 
@@ -85,8 +102,9 @@ def ddpg(env, policy_kwargs=dict(), seed=0,
     
     # The noise objects for DDPG
     n_actions = env.action_space.shape[-1]
-    action_noise = NormalActionNoise(mean=np.zeros(n_actions), sigma=0.1 * np.ones(n_actions))
-    model = DDPG("MlpPolicy", env, action_noise=action_noise, batch_size=batch_size, learning_rate=lr, gamma=gamma, train_freq=update_every, seed=seed, verbose=1, policy_kwargs=policy_kwargs) #missing replay buffer and policy_kwargs
+    total_steps = steps_per_epoch * epochs
+    action_noise = DecayingNoise(mean=np.zeros(n_actions), sigma=np.ones(n_actions), total_steps=total_steps)
+    model = DDPG("MlpPolicy", env, action_noise=action_noise, batch_size=batch_size, learning_starts=start_steps, learning_rate=lr, gamma=gamma, seed=seed, verbose=1, policy_kwargs=policy_kwargs)
 
     test_env = env
 

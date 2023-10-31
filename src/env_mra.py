@@ -22,9 +22,9 @@ class ResourceEnv(gym.Env):
         self.weight = weight
         self.test_env = test_env
 
-        self.action_min = np.zeros(self.UENum*self.num_res)
+        self.action_min = np.zeros(self.UENum*self.num_res) - 1
         self.action_max = np.ones(self.UENum*self.num_res)
-        self.state_min = np.zeros(self.UENum+self.num_res)
+        self.state_min = np.zeros(self.UENum+self.num_res) - 1
         self.state_max = np.ones(self.UENum+self.num_res)
 
         self.action_space = spaces.Box(self.action_min, self.action_max, dtype=np.float32)
@@ -42,9 +42,11 @@ class ResourceEnv(gym.Env):
 
 
     def step(self, in_action):
+        action = np.clip(in_action, self.action_min, self.action_max).astype('float32')
 
-        action = np.clip(in_action, self.action_min, self.action_max)
-        # assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
+        action = (action + 1) / 2
+
+        assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
 
         action = self.Rmax * np.reshape(action, [self.num_res, self.UENum])  # reshape into number of resource * number of users
 
