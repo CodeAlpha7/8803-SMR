@@ -24,8 +24,8 @@ class ResourceEnv(gym.Env):
 
         self.action_min = np.zeros(self.UENum*self.num_res) - 1
         self.action_max = np.ones(self.UENum*self.num_res)
-        self.state_min = np.zeros(self.UENum+self.num_res) - 1
-        self.state_max = np.ones(self.UENum+self.num_res)
+        self.state_min = np.zeros(self.UENum+self.num_res)
+        self.state_max = np.array([min_reward] * self.UENum + [self.Rmax])
 
         self.action_space = spaces.Box(self.action_min, self.action_max, dtype=np.float32)
         self.observation_space = spaces.Box(self.state_min, self.state_max, dtype=np.float32)

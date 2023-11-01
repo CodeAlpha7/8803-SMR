@@ -11,9 +11,9 @@ USE_SEED = True
 ########################################################################################################################
 SliceNum = 3
 UENum = 5
-RESNum = 3
+RESNum = 1
 seed = 123456789
-maxTime = 360
+maxTime = 20
 ADMM_iter = 10
 
 use_other_utility_function = False  # do no change to True since the function is not convex, cannot be solve by cvxpy
@@ -25,7 +25,7 @@ Rmin = 0
 
 replay_size = int(1e6)
 steps_per_epoch = 5000  # at least 5000 * 100 since we have to learn the augmented state space (ADMM penalty)
-epochs = 25
+epochs = 200
 batch_size = 1000
 pi_lr = 1e-3
 q_lr = 1e-3
