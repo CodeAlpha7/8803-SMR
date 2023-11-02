@@ -3,6 +3,7 @@ import time
 import pickle
 import datetime
 import os
+import threading
 
 
 import numpy as np
@@ -35,6 +36,26 @@ def parse_args() -> argparse.Namespace:
     )
     args = parser.parse_args()
     return args
+
+
+def train_slice(env, policy_kwargs, steps_per_epoch, epochs, lr, start_steps, batch_size, seed, replay_size, max_ep_len, logger_kwargs, fresh_learn_idx, result_list, index):
+    if args.algorithm == 'td3':
+        utility, _ = td3(env=env, policy_kwargs=policy_kwargs,
+                         steps_per_epoch=steps_per_epoch,
+                         epochs=epochs, lr=lr,
+                         start_steps=start_steps, batch_size=batch_size,
+                         seed=seed, replay_size=replay_size, max_ep_len=max_ep_len,
+                         logger_kwargs=logger_kwargs, fresh_learn_idx=fresh_learn_idx)
+    elif args.algorithm == 'ddpg':
+        utility, _ = ddpg(env=env, policy_kwargs=policy_kwargs,
+                          steps_per_epoch=steps_per_epoch,
+                          epochs=epochs, lr=lr,
+                          start_steps=start_steps, batch_size=batch_size,
+                          seed=seed, replay_size=replay_size, max_ep_len=max_ep_len,
+                          logger_kwargs=logger_kwargs, fresh_learn_idx=fresh_learn_idx)
+    
+    result_list[index] = utility
+
 
 if __name__ == "__main__":
 
@@ -107,6 +128,9 @@ if __name__ == "__main__":
     utility = np.zeros(SliceNum)
     x = np.zeros([UENum, maxTime], dtype=np.float32)
 
+    results = [None] * SliceNum
+
+    threads = []
     for i in range(SliceNum):
         print(f"Start slice {i} training...")
 
@@ -119,24 +143,18 @@ if __name__ == "__main__":
                           num_res=RESNum, num_user=UENum,
                           max_time=maxTime, min_reward=minReward,
                           rho=rho, test_env=False)
+        
+        thread = threading.Thread(target=train_slice, args=(env, policy_kwargs, steps_per_epoch, epochs, pi_lr, start_steps, batch_size, seed, replay_size, maxTime, logger_kwargs, True, results, i))
+        threads.append(thread)
+        thread.start()
 
-        if args.algorithm == 'td3':
-            utility[i], _ = td3(env=env, policy_kwargs=policy_kwargs,
-                                steps_per_epoch=steps_per_epoch,
-                                epochs=epochs, lr=pi_lr,
-                                start_steps=start_steps, batch_size=batch_size,
-                                seed=seed, replay_size=replay_size, max_ep_len=maxTime,
-                                logger_kwargs=logger_kwargs, fresh_learn_idx=True)
+    for thread in threads:
+        thread.join()
 
-        elif args.algorithm == 'ddpg':
-            utility[i], _ = ddpg(env=env, policy_kwargs=policy_kwargs,
-                                steps_per_epoch=steps_per_epoch,
-                                epochs=epochs, lr=pi_lr,
-                                start_steps=start_steps, batch_size=batch_size,
-                                seed=seed, replay_size=replay_size, max_ep_len=maxTime,
-                                logger_kwargs=logger_kwargs, fresh_learn_idx=True)
+    end_time = time.time()
+    print('Training Time is ' + str(end_time - start_time))
 
-        print('slice' + str(i) + 'training completed.')
+    print(f"\nUtility:\n{results}\n\n")
 
     end_time = time.time()
     print('Training Time is ' + str(end_time - start_time))
