@@ -4,6 +4,7 @@ import pickle
 import datetime
 import os
 
+
 import numpy as np
 import torch
 import matplotlib.pyplot as matplt
@@ -12,6 +13,8 @@ from parameters import *
 from env_mra import ResourceEnv
 from td3_sb3 import td3
 from ddpg_sb3 import ddpg
+
+from utils import redirect_output_to_file_and_stdout, reset_output
 
 
 MODELS_DIR = "models"
@@ -95,6 +98,8 @@ if __name__ == "__main__":
 
             fileop.write(string_to_write)
 
+    trace_file = redirect_output_to_file_and_stdout(f"{dst_dir_path}/training_trace.txt")
+
     ########################################################################################################################
     ##########################################        Main Training           #############################################
     ########################################################################################################################
@@ -103,6 +108,8 @@ if __name__ == "__main__":
     x = np.zeros([UENum, maxTime], dtype=np.float32)
 
     for i in range(SliceNum):
+        print(f"Start slice {i} training...")
+
         policy_kwargs = dict(net_arch=hidden_sizes, activation_fn=torch.nn.ReLU)
 
         path = f"{dst_dir_path}/{RESNum}slice{i}"
@@ -120,7 +127,7 @@ if __name__ == "__main__":
                                 start_steps=start_steps, batch_size=batch_size,
                                 seed=seed, replay_size=replay_size, max_ep_len=maxTime,
                                 logger_kwargs=logger_kwargs, fresh_learn_idx=True)
-            
+
         elif args.algorithm == 'ddpg':
             utility[i], _ = ddpg(env=env, policy_kwargs=policy_kwargs,
                                 steps_per_epoch=steps_per_epoch,
@@ -133,6 +140,8 @@ if __name__ == "__main__":
 
     end_time = time.time()
     print('Training Time is ' + str(end_time - start_time))
+
+    print(f"\nUtility:\n{utility}\n\n")
 
     #####################################          result ploting            ###############################################
 
@@ -153,3 +162,5 @@ if __name__ == "__main__":
     # matplt.show()
 
     print('done')
+
+    reset_output(trace_file)
