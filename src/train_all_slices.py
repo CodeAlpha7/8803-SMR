@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
         "ALGORITHM",
             ("SliceNum", SliceNum),
-            ("seed", seed),
+            ("seed", seed if USE_SEED else "None"),
             ("hidden_sizes", hidden_sizes),
             ("replay_size", replay_size),
             ("epochs", epochs),
