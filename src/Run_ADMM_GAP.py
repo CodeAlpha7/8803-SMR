@@ -29,6 +29,8 @@ if __name__ == "__main__":
     args = parse_args()
 
     model_name = args.model_path.split("/")[-1]
+    if not model_name:
+        model_name = args.model_path.split("/")[-2]
 
     #utility = np.zeros(ADMM_iter)
     INDEX = np.arange(SliceNum)
