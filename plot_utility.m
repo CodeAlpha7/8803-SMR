@@ -1,7 +1,7 @@
 clear
 
-DDPG = 'result_ADMM_GAP_ddpg_2023-10-23_02:12:53_25epochs_3RESNum.mat';
-TD3 = 'result_ADMM_GAP_td3_2023-10-23_02:16:09_25epochs_3RESNum.mat';
+DDPG = 'result_ADMM_GAP_ddpg_2023-11-02_22:04:32_traces.mat';
+TD3 = 'result_ADMM_GAP_td3_2023-11-02_22:04:22_traces.mat';
 
 algo = 'TD3';
 target = TD3;
