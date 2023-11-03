@@ -90,7 +90,7 @@ def main():
 
     # Plotting
     attributes_to_draw = ["ep_rew_mean", "fps", "actor_loss", "critic_loss"]
-    os.makedirs(f"{model_dir}plots", exist_ok=True)
+    os.makedirs(f"{model_dir}/plots", exist_ok=True)
 
     for attribute in attributes_to_draw:
         plt.figure()
@@ -103,7 +103,7 @@ def main():
         plt.grid(True)
 
         plt.legend()
-        plt.savefig(f"{model_dir}plots/{attribute}.png")
+        plt.savefig(f"{model_dir}/plots/{attribute}.png")
         
 
 
