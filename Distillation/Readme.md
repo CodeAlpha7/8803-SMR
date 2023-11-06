@@ -1,6 +1,26 @@
 # Distillation using GBDT
 
-UNDERSTANDING THE CHANGES:
+## How to run this code:
+Key code components:
+1. env.py = training environment using the KAIST dataset
+2. DDPG.py = DDPG agent running the algorithm.
+3. run_this.py = does the training and saves state transitions into a CSV file.
+4. GBDT.py = distillation code which uses saved transitions, cleans them to form a dataset, trains GBDT and outputs MSE.
+
+### Steps to run code:
+1. Setup environment. Refer ```requirements.txt```. Keep in mind that this code requires Python 3.7.5 and Tensorflow 2.2.0.
+2. Train the models using:
+```
+python run_this.py
+```
+This will save state information in a CSV file. Configure naming in this file before running.
+
+3. Refer the saved CSV file. Configure naming accordingly. Then run:
+```
+python GBDT.py
+```
+
+## UNDERSTANDING THE CHANGES:
 1. DDPG.py
 it has a single get_status function which sets the current status on the memory. 
 when the algorithm has been run, it stores transitions in the memory buffer. So, a self_pointer is used to keep track of how many of these transitions are stored.
@@ -29,7 +49,7 @@ training loop has maximum number of episodes defined by LEARNING_MAX_EPISODE
 
 
 ------------------------------------------------------------
-IMPLEMENTATION IDEA:
+## IMPLEMENTATION IDEA:
 ------------------------------------------------------------
 1. Collect training data during the DDPG training loop. Collect state, action and reward data for each episode.
 2. Preprocess the data - transformations into appropriate feature vectors and labels suitable to be used for training.
@@ -38,7 +58,7 @@ IMPLEMENTATION IDEA:
 
 
 ------------------------------------------------------------
-PERFORMANCE METRICS:
+## PERFORMANCE METRICS:
 ------------------------------------------------------------
 1. Mean Squared Error (MSE): to measure difference between predicted values and true values (in dataset). A measure of average squared deviation - useful in quantifying the overall accuracy or goodness of fit of a model.
 
@@ -93,7 +113,8 @@ predicted rewards vs actual reward
 
 
 -----------------------------------------------------------------
-STATE SPACE vs EXECUTION TIME:
+## STATE SPACE vs EXECUTION TIME:
+-----------------------------------------------------------------
 Take state as input and measure the time taken to make predictions based on that state. Do this for both DDPG and GBDT, compare them.
 
 so, generate state space samples - a set of data points that represent a state or configuration of env. SPECIFIC INSTANCES.
