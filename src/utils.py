@@ -1,4 +1,6 @@
 import sys
+import subprocess
+
 
 class OutputCapture:
     def __init__(self, output_file):
@@ -15,10 +17,21 @@ class OutputCapture:
         self.original_stdout.flush()
         self.output_file.flush()
 
+
 def redirect_output_to_file_and_stdout(output_filename):
     file = open(output_filename, 'w')
     return OutputCapture(file)
 
+
 def reset_output(output_capture):
     sys.stdout = output_capture.original_stdout
     output_capture.output_file.close()
+
+
+def get_git_hash():
+    try:
+        git_hash = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip()
+        return git_hash.decode("utf-8")
+    except subprocess.CalledProcessError:
+        return None
+    

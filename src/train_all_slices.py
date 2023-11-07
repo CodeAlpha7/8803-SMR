@@ -4,7 +4,6 @@ import pickle
 import datetime
 import os
 
-
 import numpy as np
 import torch
 import matplotlib.pyplot as matplt
@@ -14,7 +13,7 @@ from env_mra import ResourceEnv
 from td3_sb3 import td3
 from ddpg_sb3 import ddpg
 
-from utils import redirect_output_to_file_and_stdout, reset_output
+from utils import get_git_hash, redirect_output_to_file_and_stdout, reset_output
 
 
 MODELS_DIR = "models"
@@ -59,6 +58,8 @@ if __name__ == "__main__":
     parameters_list = []
 
     parameters_list.extend([
+        ("GIT HASH", get_git_hash()),
+
         "ENVIRONMENT",
             ("RESNum", RESNum),  
             ("UENum", UENum),
