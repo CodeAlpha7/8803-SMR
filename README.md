@@ -67,9 +67,13 @@ Inside such folder you will also find a `parameters.txt` file that lists the par
 ## Changes 
 
 ### TD3 Changes
+- Previously the noise comes from a random number between 0 and 1, 
+now I'm using the default in Stable Baselines 3 which is a Gaussian distribution
 - Previously, the Replay Buffer class was defined by us,
 I'm using the default from Stable Baselines 3
+- Previously, the pi network had tanh as its activation function and the q networks used relu,
+I haven't found a way to specify a different activation funciton for each so I believe they all use relu now
 - I removed the logging done by SpinningUp, Stable Baselines 3 has a logger we can replace it with
 Previously, there were a number of other network parameters we were able to define but now it doesn't look like we can,
-such as target noise, noise clipping, waiting X steps to train while collecting samples
+such as polyak, target noise, noise clipping, waiting X steps to train while collecting samples
 - Currently, all training is done in one call to learn() so we need to add periodic eval stages to it to log performance like we did previously instead of being able to call test_agent() in a loop
