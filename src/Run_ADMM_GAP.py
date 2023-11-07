@@ -7,6 +7,7 @@ import numpy as np
 from functions import *
 from parameters import *
 from ADMM import admm_opt_algorithm, admm_td3_algorithm, admm_static_algorithm, admm_ddpg_algorithm
+from utils import redirect_output_to_file_and_stdout
 
 
 DST_DIR = "new_results"
@@ -32,6 +33,9 @@ if __name__ == "__main__":
     if not model_name:
         model_name = args.model_path.split("/")[-2]
 
+    dst_filename = __file__.split("/")[-1].split(".")[0]
+    trace_file = redirect_output_to_file_and_stdout(f"{args.model_path}/{dst_filename}_trace.txt")
+
     #utility = np.zeros(ADMM_iter)
     INDEX = np.arange(SliceNum)
 
@@ -40,12 +44,14 @@ if __name__ == "__main__":
     print(utility_static)
 
     if args.algorithm == 'ddpg':
+        print("********** DDPG **********")
         utility, gap = admm_ddpg_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX, model_path=args.model_path)
 
     elif args.algorithm == 'td3':
+        print("********** TD3 **********")
         utility, gap = admm_td3_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX, model_path=args.model_path)
 
-    print("********** Utility *******")
+    print("********** Utility **********")
 
     print(utility)
 
