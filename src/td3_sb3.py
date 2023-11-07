@@ -5,14 +5,16 @@ import matplotlib.pyplot as matplt
 
 from stable_baselines3 import TD3
 from stable_baselines3.common.noise import NormalActionNoise
+from custom_policies import CustomTD3Policy
+TD3.policy_aliases["CustomTD3Policy"] = CustomTD3Policy
 
 
 
 def td3(env, policy_kwargs=dict(), seed=0,
         steps_per_epoch=4000, epochs=100, replay_size=int(1e6), gamma=0.99,
-        polyak=0.995, lr=1e-3, batch_size=100, start_steps=10000,
-        update_after=1000, update_every=50, act_noise=0.1, target_noise=0.2,
-        noise_clip=0.5, policy_delay=2, num_test_episodes=10, max_ep_len=1000,
+        polyak=0.995, lr=1e-3, batch_size=100, start_steps=10000, update_every=1,
+        act_noise=0.1, target_noise=0.2, noise_clip=0.5,
+        num_test_episodes=10, max_ep_len=1000,
         logger_kwargs=dict(), save_freq=1, fresh_learn_idx=True):
     """
     Twin Delayed Deep Deterministic Policy Gradient (TD3)
@@ -83,8 +85,8 @@ def td3(env, policy_kwargs=dict(), seed=0,
     
     # The noise objects for TD3
     n_actions = env.action_space.shape[-1]
-    action_noise = NormalActionNoise(mean=np.zeros(n_actions), sigma=0.1 * np.ones(n_actions))
-    model = TD3("MlpPolicy", env, action_noise=action_noise, batch_size=batch_size, learning_rate=lr, gamma=gamma, train_freq=update_every, seed=seed, verbose=1, policy_kwargs=policy_kwargs) #missing replay buffer and policy_kwargs
+    action_noise = NormalActionNoise(mean=np.zeros(n_actions), sigma=act_noise * np.ones(n_actions))
+    model = TD3("CustomTD3Policy", env, action_noise=action_noise, learning_starts=start_steps, train_freq=update_every, batch_size=batch_size, learning_rate=lr, gamma=gamma, tau=polyak, seed=seed, verbose=1, policy_kwargs=policy_kwargs)
 
     test_env = env
 
