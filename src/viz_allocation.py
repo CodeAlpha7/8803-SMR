@@ -1,3 +1,12 @@
+"""
+To get usage run `python src/viz_allocation.py -h`
+
+It creates a a plot with NxM sublots where N is the number of resources and M is the number of slices.
+
+Consumes the file Run_ADMM_GAP_trace.txt located in the model dir. If no such file exists it will attempt to run 
+Run_ADMM_GAP.py to create it.
+"""
+
 import os
 import re
 import warnings
