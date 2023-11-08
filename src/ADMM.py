@@ -59,8 +59,6 @@ def admm_ddpg_algorithm(sliceNo, ueNo, resNo, alpha, weight, idx, model_path):
                 aug_penalty=z_minus_u[i],
                 model_path=model_path
             )
-            print('tmpx is')
-            print(tmpx)
             x[i] = Rmax * np.mean(tmpx, axis=0)  # mean for all maxTime
 
         sumx = np.sum(x, axis=2)  # the sum resource of all users in each slice
@@ -277,7 +275,6 @@ def main_admm_algorithm(SliceNum, UENum, RESNum, alpha, weight, INDEX, model_pat
     utility_opt = admm_opt_algorithm(sliceno=SliceNum, ueno=UENum, resno=RESNum, alpha=alpha, weight=weight, )[-1]
 
     # utility_td3 = admm_td3_algorithm(sliceNo=SliceNum, ueNo=UENum, resNo=RESNum, alpha=alpha, weight=weight, idx=INDEX)[-1]
-    print("APPY")
     print([utility_static, utility_ddpg, utility_opt])
 
     # scipy.io.savemat('results/ADMM_simulation' + str(simulated_optimization) + '.mat', mdict={'sum_x': sum_x,
