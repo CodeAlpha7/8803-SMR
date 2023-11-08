@@ -12,7 +12,7 @@ UENum = 5
 RESNum = 3
 USE_SEED = False
 seed = 123456789
-maxTime = 360
+maxTime = 20
 ADMM_iter = 10
 
 use_other_utility_function = False  # do no change to True since the function is not convex, cannot be solve by cvxpy
