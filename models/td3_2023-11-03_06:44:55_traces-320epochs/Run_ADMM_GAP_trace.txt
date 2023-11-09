@@ -1,0 +1,167 @@
+********** Utility Static *******
+5500.363560796724
+********** TD3 **********
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 0
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 1
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 2
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 3
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 4
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 5
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 6
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 7
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 8
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+loading
+Episode 0 	 EpRet -941168.002 	 EpLen 360
+loading
+Episode 0 	 EpRet -53515.647 	 EpLen 360
+loading
+Episode 0 	 EpRet -337435.532 	 EpLen 360
+iter 9
+current allocation is
+[[  2.2222223   0.          0.2777778]
+ [ 71.75798    19.52515    76.42106  ]
+ [ 66.77779    14.845343  145.75992  ]]
+********** Utility **********
+[3020.649462690085, 3020.649462690085, 3020.649462690085, 3020.649462690085, 3020.649462690085, 3020.649462690085, 3020.649462690085, 3020.649462690085, 3020.649462690085, 3020.649462690085]
+iter 0
+current allocation is
+[[2.7927594 5.6661477 6.756191 ]
+ [5.0436788 5.542434  6.9774466]
+ [4.885084  4.508159  3.6632328]]
+iter 1
+current allocation is
+[[60.983795 61.8621   61.839615]
+ [63.23364  61.735092 62.052452]
+ [63.08102  60.70655  58.738235]]
+iter 2
+current allocation is
+[[31.885502 33.76358  34.30379 ]
+ [34.132656 33.63164  34.5069  ]
+ [33.987186 32.61     31.19434 ]]
+iter 3
+current allocation is
+[[31.883133 33.762833 34.308044]
+ [34.127598 33.62595  34.501427]
+ [33.989277 32.611214 31.190529]]
+iter 4
+current allocation is
+[[31.882542 33.763824 34.313976]
+ [34.124306 33.62201  34.49763 ]
+ [33.993137 32.614166 31.18839 ]]
+iter 5
+current allocation is
+[[31.881958 33.764816 34.319904]
+ [34.12103  33.618065 34.493835]
+ [33.99702  32.617123 31.186255]]
+iter 6
+current allocation is
+[[31.881367 33.76581  34.32584 ]
+ [34.11774  33.61412  34.49004 ]
+ [34.00089  32.62007  31.184122]]
+iter 7
+current allocation is
+[[31.88078  33.7668   34.331764]
+ [34.114464 33.610176 34.486244]
+ [34.004757 32.62302  31.181988]]
+iter 8
+current allocation is
+[[31.880192 33.76779  34.337692]
+ [34.111183 33.60623  34.48245 ]
+ [34.00862  32.625977 31.179855]]
+iter 9
+current allocation is
+[[31.879608 33.768784 34.34362 ]
+ [34.107906 33.602287 34.47866 ]
+ [34.012493 32.62893  31.177723]]
+********** Utility optimized *******
+[1977.4551948868054, 8770.019328201695, 6262.505184943228, 6262.459179404275, 6262.585578935352, 6262.712417639503, 6262.838945907861, 6262.9653563106185, 6263.091879224003, 6263.218457721558]

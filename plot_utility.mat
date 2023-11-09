@@ -1,10 +1,12 @@
+% Matplot script used to generate the utilities figures
+
 clear
 
-DDPG = 'result_ADMM_GAP_ddpg_2023-11-02_22:04:32_traces.mat';
-TD3 = 'result_ADMM_GAP_td3_2023-11-02_22:04:22_traces.mat';
+DDPG = 'result_ADMM_GAP_ddpg_model_200epochs_GCP.mat';
+TD3 = 'result_ADMM_GAP_td3_2023-10-21_05:06:32_GCP_VM.mat';
 
-algo = 'TD3';
-target = TD3;
+algo = 'DDPG';
+target = DDPG;
 
 load(target)
 
@@ -23,7 +25,7 @@ xlim([1, max(x)]);
 xticks(1:max(x));
 
 ylabel('Utility');
-%ylim([0, 1.5e4]);
+ylim([0, 1.5e4]);
 
 legend('Utility Static', 'Utility OPT', 'Utility');
 

@@ -113,8 +113,6 @@ def td3(env, policy_kwargs=dict(), seed=0,
     model.learn(total_timesteps=total_steps, log_interval=10)
     model.save(logger_kwargs["output_dir"])
 
-
-
     # Test the performance of the deterministic version of the agent.
     test_ret, test_act = test_agent()
     total_reward.append(test_ret)
